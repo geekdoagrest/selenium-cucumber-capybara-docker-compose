@@ -1,0 +1,13 @@
+version: '3'
+services:
+  browser:
+    image: selenium/standalone-chrome-debug
+    ports:
+      - "5900:5900" #for VNC access
+      - "4444:4444" #for webdriver access
+  ruby:
+    build: .
+    volumes:
+      - .:/app
+    depends_on: 
+      - browser
