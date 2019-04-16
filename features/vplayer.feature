@@ -1,6 +1,10 @@
-Feature: vPlayer
+# encoding: utf-8
+# language: pt
 
-Scenario: Checando se o vPlayer está funcionando
-  Given Acessar "/u2/with-or-without-you.html"
-  When Clicar no elemento "#artHeaderPlayer button.vagaPlay"
-  Then Procurar pelo elemento "div.vPlayer"
+Funcionalidade: vPlayer
+  Objetivo de testar o carregamento do player
+
+  Cenário: Checando se o vPlayer está funcionando
+    Dado Acessar "/u2/with-or-without-you.html"
+    Quando Clicar no elemento "#artHeaderPlayer button.vagaPlay"
+    Então Procurar pelo elemento "div.vPlayer"
