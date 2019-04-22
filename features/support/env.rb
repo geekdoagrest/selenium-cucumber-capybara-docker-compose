@@ -6,10 +6,14 @@ require 'pry'
 #if you're accessing an internal app behind a firewall, you may not need the proxy. You can unset it like so:
 #ENV['HTTP_PROXY'] = ENV['http_proxy'] = nil
 
-sleep(10) #waiting browser
-
 #get IP of host which has 4444 mapped from other container
 docker_ip = %x(/sbin/ip route|awk '/default/ { print $3 }').strip
+
+test = ''; #waiting browser
+while !test.index('Server is running') do
+   test = %x(curl -sSL "http://#{docker_ip}:4444/wd/hub/status").strip
+   sleep(1)
+end
 
 Capybara.register_driver :remote_chrome do |app|
   Capybara::Selenium::Driver.new(app,
